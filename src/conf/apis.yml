@@ -1,0 +1,13 @@
+---
+- host: default
+  api:
+    - id: commonapi
+      url: /globla/db/:host/:db/:table
+      method: GET
+      common: 通用api
+    - id: login
+      url: '/global/login'
+      method: POST
+      common: 登入
+
+

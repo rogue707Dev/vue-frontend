@@ -1,0 +1,22 @@
+---
+- path: /
+  component: Layout
+  name: Home
+  icon: home
+  redirect: /home
+  hidden: true
+  enabled: true
+  children:
+    - path: home
+      component: pages/home
+- path: /sample
+  component: Layout
+  icon: home
+  redirect: /sample/index
+  hidden: true
+  enabled: true
+  children:
+    - path: index
+      component: pages/sample/index
+    - path: firebase
+      component: pages/sample/firebase

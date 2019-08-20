@@ -1,0 +1,25 @@
+---
+master:
+  host:
+    default: http://localhost:3138
+  socket:
+    url: http://localhost:3139
+    path: /socket/socket.io
+    reconnectDelay: 5000
+    reconnectAttemps: 20
+stage:
+  host:
+    default: http://localhost:3138
+  socket:
+    url: http://localhost:3139
+    path: /socket/socket.io
+    reconnectDelay: 5000
+    reconnectAttemps: 20
+develop:
+  host:
+    default: http://localhost:3138
+  socket:
+    url: http://localhost:3139
+    path: /socket/socket.io
+    reconnectDelay: 5000
+    reconnectAttemps: 20

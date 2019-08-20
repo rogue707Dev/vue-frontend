@@ -1,0 +1,7 @@
+VUE_APP_FIREBASE_apiKey = ''
+VUE_APP_FIREBASE_authDomain = ''
+VUE_APP_FIREBASE_databaseURL = ''
+VUE_APP_FIREBASE_projectId = ''
+VUE_APP_FIREBASE_storageBucket = ''
+VUE_APP_FIREBASE_messagingSenderId = ''
+VUE_APP_FIREBASE_appId = ''
