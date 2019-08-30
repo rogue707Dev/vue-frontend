@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { value } from 'vue-function-api'
+import { value } from '@vue/composition-api'
 export default {
   name: 'HelloWorld',
   props: {

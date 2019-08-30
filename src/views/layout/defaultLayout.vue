@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-import { value, computed } from 'vue-function-api'
+import { value, computed } from '@vue/composition-api'
 export default {
   name: 'Layout',
   setup(props, context) {

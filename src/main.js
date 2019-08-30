@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import { plugin } from 'vue-function-api'
+import VueCompositionApi from '@vue/composition-api'
 import router from './utils/router'
 import App from './App.vue'
 import { initFirebase } from '@/utils/firebase'
 // import { apiData, routesData, stageData } from './config'
 Vue.config.productionTip = false
-Vue.use(plugin)
+Vue.use(VueCompositionApi)
 Vue.use(ElementUI, {
   size: 'medium'
 })
