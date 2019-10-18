@@ -1,7 +1,7 @@
 import { loadScript } from './common'
 const sdk = 'https://www.gstatic.com/firebasejs/6.4.0/firebase.js'
 let isInit = false
-export const initFirebase = async(callback = null) => {
+export const initFirebase = async (callback = null) => {
   // console.log(`process.env.VIP_APP_firebase_apiKey=${process.env.VUE_APP_FIREBASE_apiKey}`)
   if (process.env.VUE_APP_FIREBASE_apiKey && process.env.VUE_APP_FIREBASE_apiKey !== '') {
     if (isInit) {

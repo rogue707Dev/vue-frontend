@@ -1,5 +1,5 @@
 // 載入外部script
-export const loadScript = async(url, id = null, testMode = false) => {
+export const loadScript = async (url, id = null, testMode = false) => {
   return new Promise((resolve, reject) => {
     try {
       const script = document.createElement('script')
@@ -28,7 +28,7 @@ export const loadScript = async(url, id = null, testMode = false) => {
   })
 }
 // 載入外部的style 檔案
-export const loadStyle = async(url, id = null, testMode = false) => {
+export const loadStyle = async (url, id = null, testMode = false) => {
   return new Promise((resolve, reject) => {
     const link = document.createElement('link')
     link.type = 'text/css'

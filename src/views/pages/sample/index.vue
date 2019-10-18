@@ -2,9 +2,9 @@
   <div>firebase sample</div>
 </template>
 <script>
-  export default {
-    name: 'Sample',
-    setup() {
-    }
+export default {
+  name: 'Sample',
+  setup () {
   }
+}
 </script>

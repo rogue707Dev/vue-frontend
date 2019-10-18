@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'app',
-  setup() {
+  setup () {
     // console.log('hello in app')
     // console.log(process.env)
   }

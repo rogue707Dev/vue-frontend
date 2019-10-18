@@ -1,6 +1,6 @@
-/* 將route設定檔 轉換產生route*/
-const _import = require('./_import_' + process.env.NODE_ENV)
+/* 將route設定檔 轉換產生route */
 import Layout from '@/views/layout/defaultLayout'
+const _import = require('./_import_' + process.env.NODE_ENV)
 // -- 建立parent節點 --
 const getParentNode = (routeData) => {
   if (routeData.name === undefined) {

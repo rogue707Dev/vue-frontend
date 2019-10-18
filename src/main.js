@@ -11,7 +11,7 @@ Vue.use(VueCompositionApi)
 Vue.use(ElementUI, {
   size: 'medium'
 })
-const run = async() => {
+const run = async () => {
   const db = await initFirebase()
   if (db === null) console.log('firebase not enable please setup')
   new Vue({

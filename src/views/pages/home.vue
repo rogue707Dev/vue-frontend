@@ -4,7 +4,7 @@
 <script>
 export default {
   name: 'Home',
-  setup() {
+  setup () {
   }
 }
 </script>

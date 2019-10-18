@@ -1,8 +1,7 @@
-/* 將設定的schema 資料轉換產生route*/
-'use strict'
-const _import = require('./_import_' + process.env.NODE_ENV)
+/* 將設定的schema 資料轉換產生route */
 import Layout from '../views/layout/Layout'
 import { Message } from 'element-ui'
+const _import = require('./_import_' + process.env.NODE_ENV)
 const defaultParentIcon = 'bell'
 const defaultNodeIcon = 'form'
 // -- 建立parent節點 --
