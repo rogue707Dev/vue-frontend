@@ -3,7 +3,7 @@
   component: Layout
   name: Home
   icon: home
-  redirect: /home
+  redirect: /sample
   hidden: true
   enabled: true
   children:
@@ -17,6 +17,6 @@
   enabled: true
   children:
     - path: index
-      component: pages/sample/index
+      component: sample/index
     - path: firebase
-      component: pages/sample/firebase
+      component: sample/firebase

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import routesData from '@/conf/routes.yml'
+import routesData from '@@/conf/routes.yml'
 import { getRouteArray } from './routesDataParser'
 // import { getRouteArrayFromSchema } from './schemaRouteParser'
 Vue.use(Router)
