@@ -6,7 +6,12 @@ import VueCompositionApi from '@vue/composition-api'
 import router from './utils/router'
 import App from './App.vue'
 import { initFirebase } from '@/utils/firebase'
-// import { apiData, routesData, stageData } from './config'
+import { apiData, stageData } from './config'
+// 初始化 產生api
+import { initAPI } from '@/utils/api'
+const currentStage = process.env.VUE_APP_STAGE ? process.env.VUE_APP_STAGE : 'develop'
+initAPI(apiData, stageData, currentStage)
+
 Vue.config.productionTip = false
 Vue.use(VueCompositionApi)
 Vue.use(ElementUI, {

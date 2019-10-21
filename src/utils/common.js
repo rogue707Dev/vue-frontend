@@ -64,3 +64,10 @@ export const tmp = (key, value = null) => { // 有value為set 沒有為get
 export const removeTmp = (key) => {
   if (window.__tmp__ && window.__tmp__[key]) delete window.__tmp__[key]
 }
+// 在url search string 內查 name 的值
+export const getUrlParameter = (name) => {
+  name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')
+  var regex = new RegExp('[\\?&]' + name + '=([^&#]*)')
+  var results = regex.exec(location.search)
+  return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '))
+}
