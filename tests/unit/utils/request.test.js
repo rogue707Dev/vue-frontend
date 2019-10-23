@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+// import request from '@/utils/request'
 describe('[utils/common]', () => {
   beforeAll(() => {
   })
