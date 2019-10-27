@@ -1,7 +1,7 @@
 <script>
 import bus from '@/utils/EventBus'
 import { tmp, removeTmp } from '@/utils/common'
-import { getAPI } from '@/utils/api'
+import { getAPI, fetchURL } from '@/utils/api'
 import _ from 'lodash'
 export default {
   name: 'VComponent',
@@ -94,6 +94,15 @@ export default {
         callback(null, response)
       }).catch(error => {
         callback(error, error)
+      })
+    },
+    async fetchURL (url, method = 'GET', data = null) {
+      return new Promise((resolve, reject) => {
+        fetchURL(url, method, data).then(response => {
+          resolve(response)
+        }).catch(error => {
+          reject(error)
+        })
       })
     },
     // -- dispatch 用來發送 vuex action

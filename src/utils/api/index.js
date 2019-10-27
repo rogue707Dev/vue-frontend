@@ -18,7 +18,6 @@ const createFlatAPI = () => {
   const externalApiBase = getOptUrlBase()
   for (const prop in apiData) {
     // --找對應的主機
-    // let baseURL = process.env.API_HOST[prop] || process.env.BASE_API
     let baseURL = apiData[prop].host
     if (externalApiBase !== '') baseURL = externalApiBase
     const item = apiData[prop].api
@@ -47,8 +46,7 @@ const createFlatAPI = () => {
         result[newApiName] = function (...args) { // 當有參數會是 param1, param2..data
           const opts = {
             url: item[apiName].url,
-            method: method,
-            api_host: prop
+            method: method
           }
           if (args.length > 0) {
             // -- 最後一個參數若非物件, 則就非data 也就是無data
@@ -67,6 +65,8 @@ const createFlatAPI = () => {
           } else {
             opts.url = `${baseURL}${item[newApiName].url}`
           }
+          console.log('opts=')
+          console.log(opts)
           return request(opts)
         }
         // 記住每支API實際URL屬性,實際可能會用到
@@ -167,4 +167,23 @@ export const getFullURL = (path) => {
   if (path.indexOf('http') === 0) return path
   if (path.indexOf('/') !== 0) path = `/${path}`
   return `${apiData.default.host}${path}`
+}
+export const fetchURL = async (url, method = 'GET', data = null) => {
+  if (url.indexOf('http') === -1) url = `http://${url}`
+  method = method.toUpperCase()
+  const opts = { url, method }
+  if (data !== null) {
+    if (method === 'GET') {
+      opts.params = data
+    } else {
+      opts.data = data
+    }
+  }
+  return new Promise((resolve, reject) => {
+    request(opts).then(response => {
+      resolve(response)
+    }).catch(error => {
+      reject(error)
+    })
+  })
 }

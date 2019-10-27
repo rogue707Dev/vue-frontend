@@ -1,11 +1,15 @@
 ---
 - host: default
   api:
-    - id: commonapi
+    sample:
+      url: /sample/text
+      method: GET
+      common: 測試範例api
+    commonapi:
       url: /globla/db/:host/:db/:table
       method: GET
       common: 通用api
-    - id: login
+    login:
       url: '/global/login'
       method: POST
       common: 登入
