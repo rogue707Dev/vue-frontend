@@ -4,6 +4,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueCompositionApi from '@vue/composition-api'
 import router from './utils/router'
+import store from './store'
 import App from './App.vue'
 import { initFirebase } from '@/utils/firebase'
 import { apiData, stageData } from './config'
@@ -22,6 +23,7 @@ const run = async () => {
   if (db === null) console.log('firebase not enable please setup')
   new Vue({
     router,
+    store,
     render: h => h(App)
   }).$mount('#app')
 }

@@ -52,18 +52,6 @@ export const loadStyle = async (url, id = null, testMode = false) => {
     if (testMode) resolve(link)
   })
 }
-// 暫存
-export const tmp = (key, value = null) => { // 有value為set 沒有為get
-  if (window.__tmp__ === undefined) window.__tmp__ = {}
-  if (value !== null) {
-    window.__tmp__[key] = value
-  } else {
-    return window.__tmp__[key] !== undefined ? window.__tmp__[key] : null
-  }
-}
-export const removeTmp = (key) => {
-  if (window.__tmp__ && window.__tmp__[key]) delete window.__tmp__[key]
-}
 // 在url search string 內查 name 的值
 export const getUrlParameter = (name) => {
   name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]')

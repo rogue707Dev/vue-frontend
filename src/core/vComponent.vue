@@ -1,6 +1,6 @@
 <script>
 import bus from '@/utils/EventBus'
-import { tmp, removeTmp } from '@/utils/common'
+import { setLocal, getLocal, removeLocal } from '@/utils/globalState'
 import { getAPI, fetchURL } from '@/utils/api'
 import _ from 'lodash'
 export default {
@@ -41,14 +41,14 @@ export default {
       this.emit('Modal.CMD.Show', modalId, true, openerId)
     },
     setModalData (data) {
-      tmp('modalData', data)
+      setLocal('modalData', data, 'tmp')
     },
     haveModalData () {
-      return tmp('modalData') !== null
+      return getLocal('modalData', 'tmp') !== null
     },
     getModalData () {
-      const data = _.cloneDeep(tmp('modalData'))
-      removeTmp('modalData')
+      const data = _.cloneDeep(getLocal('modalData', 'tmp'))
+      removeLocal('modalData', 'tmp')
       return data
     },
     hideModal (modalId) {
