@@ -4,6 +4,8 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VueCompositionApi from '@vue/composition-api'
 import router from './utils/router'
+import i18n from './lang'
+import '@/icons'
 import store from './store'
 import App from './App.vue'
 import { initFirebase } from '@/utils/firebase'
@@ -24,6 +26,7 @@ const run = async () => {
   new Vue({
     router,
     store,
+    i18n,
     render: h => h(App)
   }).$mount('#app')
 }

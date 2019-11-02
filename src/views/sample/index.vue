@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Sample Page Laguage={{ language }}</h1>
+    <h1>My Sample Page Laguage={{ language }}</h1>
     <ol>
       <li><el-button  type="primary" @click="openModal">開啟modal</el-button></li>
       <li><el-button  type="success" @click="fetchData">fetch讀取api資料</el-button></li>
