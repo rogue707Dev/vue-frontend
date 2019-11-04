@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="title" :visible.sync="isVisible" :close-on-click-modal="false" :append-to-body="isAppend" width="100%"/>
+  <el-dialog :title="title" :visible.sync="isVisible" :close-on-click-modal="false" :append-to-body="isAppend" :fullscreen="fullscreen" width="100%"/>
 </template>
 <script>
 import vComponent from './vComponent'
@@ -12,6 +12,10 @@ export default {
       default: 'title'
     },
     isAppend: {
+      type: Boolean,
+      default: false
+    },
+    fullscreen: {
       type: Boolean,
       default: false
     }

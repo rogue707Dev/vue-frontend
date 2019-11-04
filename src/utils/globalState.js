@@ -56,6 +56,20 @@ export const removeLocal = (key, saveType = null) => {
       break
   }
 }
+export const resetLocal = (saveType = null) => {
+  if (saveType === null) saveType = defaultSaveType
+  switch (saveType) {
+    case 'cookie':
+      // Cookies.remove(key)
+      break
+    case 'local':
+      // store.remove(key)
+      break
+    case 'tmp':
+      window.__tmp__ = {}
+      break
+  }
+}
 const getKey = (key, saveType = null) => {
   if (saveType === null) saveType = defaultSaveType
   return saveType === 'cookie' ? `${AppID}-${key}` : `${AppID}/${key}`

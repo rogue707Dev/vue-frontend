@@ -1,6 +1,6 @@
 import BaseArtClass from './BaseArtClass'
 import request from '@/utils/request'
-import LocalTool from '@/core/utils/LocalStorageTool'
+import { getLocal, setLocal } from '@/utils/globalState'
 let instance = null
 class PicSumArtClass extends BaseArtClass {
   constructor () {
@@ -21,7 +21,7 @@ class PicSumArtClass extends BaseArtClass {
   init () {
     this.sourceUrl = 'https://picsum.photos/v2/list?page=5&limit=100' // 當source url改變後 會重新存回local storage
     this.seeds = []
-    const localData = LocalTool.getLocal('bgsource')
+    const localData = getLocal('bgsource')
     if (localData === null || localData.sourceUrl !== this.sourceUrl) {
       this.fetchSource(() => {
         this.index = this.getRandom(this.seeds.length)
@@ -29,10 +29,10 @@ class PicSumArtClass extends BaseArtClass {
           seeds: this.seeds,
           sourceUrl: this.sourceUrl
         }
-        LocalTool.setLocal('bgsource', newLocalData)
+        setLocal('bgsource', newLocalData)
       })
     } else {
-      this.seeds = LocalTool.getLocal('bgsource').seeds
+      this.seeds = getLocal('bgsource').seeds
       this.index = this.getRandom(this.seeds.length)
     }
   }
