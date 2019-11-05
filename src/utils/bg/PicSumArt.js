@@ -15,7 +15,7 @@ class PicSumArtClass extends BaseArtClass {
       filename = this.seeds[this._assignIndex]
     }
     if (filename === undefined) filename = '107' // 當undefined 以107當預設
-    console.log(`bg file name=${filename} this._assignBg=${this._assignBg} this._assignIndex=${this._assignIndex}`)
+    // console.log(`bg file name=${filename} this._assignBg=${this._assignBg} this._assignIndex=${this._assignIndex}`)
     return this._fullPath(filename)
   }
   init () {
@@ -40,7 +40,7 @@ class PicSumArtClass extends BaseArtClass {
     return this.displayMode === 'default' ? `https://picsum.photos/id/${fileName}/1024/768` : `https://picsum.photos/id/${fileName}/1024/768?${this.displayMode}`
   }
   fetchSource (callback = null) {
-    console.log(`re fetch source url=${this.sourceUrl}`)
+    // console.log(`re fetch source url=${this.sourceUrl}`)
     const opts = {
       url: this.sourceUrl,
       method: 'GET'
@@ -48,14 +48,15 @@ class PicSumArtClass extends BaseArtClass {
     // TODO:使用外部連結會因為response沒有result 結果會在catch拿到
     // 這部分需修改request的判斷
     request(opts).then((response) => {
+      response.forEach(item => {
+        this.seeds.push(item.id)
+      })
+      console.log('result response ==')
+      console.log(response)
       if (callback !== null) callback()
     }).catch((response) => {
       console.log(`catch...err response`)
       console.log(response)
-      response.forEach(item => {
-        this.seeds.push(item.id)
-      })
-      if (callback !== null) callback()
     })
   }
 }

@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import store from 'store2'
-const AppID = 'JabezBuilder'
+const AppID = 'OzzySun'
 const defaultSaveType = 'local' // 儲存方式 cookie|local|tmp
 // common utils
 export const setLocal = (key, value, saveType = null) => { // 指定savetype
@@ -61,9 +61,12 @@ export const resetLocal = (saveType = null) => {
   switch (saveType) {
     case 'cookie':
       // Cookies.remove(key)
+      document.cookie.split(';').forEach(function (c) { document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/') })
       break
     case 'local':
-      // store.remove(key)
+      // store.clear()
+      store.remove(getKey('token'))
+      store.remove(getKey('site'))
       break
     case 'tmp':
       window.__tmp__ = {}
@@ -73,4 +76,8 @@ export const resetLocal = (saveType = null) => {
 const getKey = (key, saveType = null) => {
   if (saveType === null) saveType = defaultSaveType
   return saveType === 'cookie' ? `${AppID}-${key}` : `${AppID}/${key}`
+}
+// 取得環境變數資料
+export const getEnv = (key) => {
+  return process.env[key]
 }

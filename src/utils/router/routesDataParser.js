@@ -1,6 +1,8 @@
 /* 將route設定檔 轉換產生route */
 import Layout from '@/views/layout/defaultLayout'
-const _import = require('./_import_' + process.env.NODE_ENV)
+// const _import = require('./_import_' + process.env.NODE_ENV)
+let _import = require('./_import_' + process.env.NODE_ENV)
+if (typeof _import === 'object') _import = _import._import
 // -- 建立parent節點 --
 const getParentNode = (routeData) => {
   if (routeData.name === undefined) {

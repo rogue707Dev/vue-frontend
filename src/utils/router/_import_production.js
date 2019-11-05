@@ -1,1 +1,1 @@
-module.exports = file => () => import('@/views/' + file + '.vue')
+export const _import = file => () => import('@/views/' + file + '.vue')
