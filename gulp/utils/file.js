@@ -4,7 +4,7 @@ const jsonfile = require('jsonfile')
 const yaml = require('js-yaml')
 const path = require('path')
 // -- File ---------
-const isFileExist = async(filePath) => {
+const isFileExist = async (filePath) => {
   return new Promise((resolve, reject) => {
     try {
       fs.open(filePath, 'r', (err, fd) => {
@@ -20,7 +20,7 @@ const isFileExist = async(filePath) => {
     }
   })
 }
-const readFile = async(filePath) => {
+const readFile = async (filePath) => {
   return new Promise((resolve, reject) => {
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
@@ -31,7 +31,7 @@ const readFile = async(filePath) => {
     })
   })
 }
-const writeFile = async(filePath, str) => {
+const writeFile = async (filePath, str) => {
   return new Promise((resolve, reject) => {
     fs.outputFile(filePath, str, (err) => {
       if (err) {
@@ -43,7 +43,7 @@ const writeFile = async(filePath, str) => {
   })
 }
 // 取得指定目錄內所有檔案 type: default:檔名＋ext| name: 只有檔名 不含 ext | full 完整路徑
-const loadFolderFiles = async(folderPath, ext = null, type = 'default') => {
+const loadFolderFiles = async (folderPath, ext = null, type = 'default') => {
   return new Promise((resolve, reject) => {
     fs.readdir(folderPath, (err, files) => {
       if (err) {
@@ -68,7 +68,7 @@ const loadFolderFiles = async(folderPath, ext = null, type = 'default') => {
   })
 }
 // -- Folder ----
-const copyFolder = async(sourcePath, targetPath) => {
+const copyFolder = async (sourcePath, targetPath) => {
   return new Promise((resolve, reject) => {
     fs.copy(sourcePath, targetPath, err => {
       if (err) {
@@ -79,7 +79,7 @@ const copyFolder = async(sourcePath, targetPath) => {
     })
   })
 }
-const removeFolder = async(targetPath) => {
+const removeFolder = async (targetPath) => {
   return new Promise((resolve, reject) => {
     fs.remove(targetPath, err => {
       if (err) {
@@ -91,7 +91,7 @@ const removeFolder = async(targetPath) => {
   })
 }
 // -- JSON -------
-const readJSON = async(sourceFile) => {
+const readJSON = async (sourceFile) => {
   // sourceFile is path.resolve path
   return new Promise((resolve, reject) => {
     jsonfile.readFile(sourceFile, (err, obj) => {
@@ -103,7 +103,7 @@ const readJSON = async(sourceFile) => {
     })
   })
 }
-const writeJSON = async(filePath, jsonObj = null) => {
+const writeJSON = async (filePath, jsonObj = null) => {
   return new Promise((resolve, reject) => {
     jsonfile.writeFile(filePath, jsonObj, { spaces: 2 }, (err) => {
       if (err) {
@@ -115,7 +115,7 @@ const writeJSON = async(filePath, jsonObj = null) => {
   })
 }
 // --- YAML --------
-const readYAML = async(sourceFile) => {
+const readYAML = async (sourceFile) => {
   const filePath = path.resolve(sourceFile)
   return new Promise((resolve, reject) => {
     try {
@@ -126,7 +126,7 @@ const readYAML = async(sourceFile) => {
     }
   })
 }
-const writeYAML = async(filePath, jsonObj = null) => {
+const writeYAML = async (filePath, jsonObj = null) => {
   filePath = path.resolve(filePath)
   return new Promise((resolve, reject) => {
     try {
@@ -141,9 +141,57 @@ const writeYAML = async(filePath, jsonObj = null) => {
     }
   })
 }
+// -- KeyValue Text ------------
+// 讀取env 並轉成物件輸出
+const readEnv = async (envPath) => {
+  let data = await readFile(envPath)
+  // 解析字串成物件
+  data = data.split('\n')
+  console.log('env data===')
+  console.log(data)
+  let result = {}
+  data.forEach((item, index) => {
+    if (item.indexOf('=') === -1) return
+    const tmp = item.trim().split('=')
+    const key = tmp[0].trim()
+    let value = tmp[1].trim()
+    if (isFinite(value)) value = parseFloat(value)
+    if (value === 'true') value = true
+    if (value === 'false') value = false
+    result[key] = value
+  })
+  console.log(result)
+  return result
+}
+// 將物件寫入env
+const writeEnv = async (envPath, dataObj) => {
+  let envStr = ''
+  for (const prop in dataObj) {
+    envStr += `${prop} = ${dataObj[prop]}\n`
+  }
+  const result = await writeFile(envPath, envStr)
+  return result
+}
+const updateEnv = async (envPath, updateObj) => {
+  let dataObj = await readEnv(envPath)
+  for (const prop in updateObj) {
+    dataObj[prop] = updateObj[prop]
+  }
+  const result = await writeEnv(envPath, dataObj)
+  return result
+}
 module.exports = {
-  readFile, writeFile, isFileExist, loadFolderFiles,
-  copyFolder, removeFolder,
-  readJSON, writeJSON,
-  readYAML, writeYAML
+  readFile,
+  writeFile,
+  isFileExist,
+  loadFolderFiles,
+  copyFolder,
+  removeFolder,
+  readJSON,
+  writeJSON,
+  readYAML,
+  writeYAML,
+  readEnv,
+  writeEnv,
+  updateEnv
 }
